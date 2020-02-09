@@ -31,7 +31,6 @@ export class CallArgument<T = any> {
         };
         Object.keys(headers).forEach(name => {
             const values = this._call.metadata.get(name);
-            console.log({ key: name, values });
             if (Array.isArray(values) && values.length > 1) {
                 headers[name] = values;
             }

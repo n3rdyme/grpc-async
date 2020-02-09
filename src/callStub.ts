@@ -1,10 +1,11 @@
 import * as grpc from 'grpc';
 import { UnimplementedError, InternalError, ErrorCodes } from 'grpc-error-messages';
 import { CallArgument } from './callArgument';
+import log from './logger';
 
 function onError(call: any, request: any, arg: CallArgument, error: Error, callback: Function): void {
     try {
-        console.error(
+        log.error(
             `[error]\t${arg.client}\t${arg.service}.${arg.method}(${JSON.stringify(request)}): ${Date.now() -
                 arg.callStart}ms`,
             error,
@@ -26,7 +27,7 @@ export function callStub(server: grpc.Server, serviceName: string, svcImpl: any,
         const { request } = call;
 
         try {
-            console.debug(`[call]\t${call.getPeer()}\t${serviceName}.${method}(${JSON.stringify(request)})`);
+            log.debug(`[call]\t${call.getPeer()}\t${serviceName}.${method}(${JSON.stringify(request)})`);
 
             if (typeof svcImpl[method] !== 'function') {
                 throw new UnimplementedError(`The method "${method}" is not implemented.`);
@@ -38,7 +39,7 @@ export function callStub(server: grpc.Server, serviceName: string, svcImpl: any,
                         throw new InternalError(`Operation must return a valid message.`);
                     }
 
-                    console.info(
+                    log.info(
                         `[done]\t${call.getPeer()}\t${serviceName}.${method}(${JSON.stringify(request)}): ` +
                             `${Date.now() - arg.callStart}ms`,
                     );
