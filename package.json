@@ -1,6 +1,6 @@
 {
   "name": "grpc-async",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple, declarative wrapper to create grpc servers and use async/await",
   "main": "build/index.js",
   "types": "build/index.d.ts",

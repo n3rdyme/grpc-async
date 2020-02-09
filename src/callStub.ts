@@ -1,6 +1,6 @@
 import * as grpc from 'grpc';
 import { UnimplementedError, InternalError, ErrorCodes } from 'grpc-error-messages';
-import CallArgument from './callArgument';
+import { CallArgument } from './callArgument';
 
 function onError(call: any, request: any, arg: CallArgument, error: Error, callback: Function): void {
     try {

@@ -6,7 +6,7 @@ export type CallHeaders = { [key: string]: CallHeaderValue };
 /**
  * The second parameter to all service call handlers
  */
-export default class CallArgument<T = any> {
+export class CallArgument<T = any> {
     private readonly _outHeaders: CallHeaders = {};
     public readonly callStart = Date.now();
 
